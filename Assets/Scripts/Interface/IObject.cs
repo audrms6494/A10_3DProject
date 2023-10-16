@@ -22,3 +22,9 @@ public interface ITrapObject : IObject
 {
     void OnTriggerEnter(Collider other);
 }
+
+public interface IInteractable
+{
+    string GetInteractPrompt();
+    void OnInteract();
+}
