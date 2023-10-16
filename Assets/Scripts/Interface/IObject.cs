@@ -21,4 +21,6 @@ public interface IInteractionObject : IObject
 public interface ITrapObject : IObject
 {
     void OnTriggerEnter(Collider other);
+
+    void Damaged(float damage);
 }
