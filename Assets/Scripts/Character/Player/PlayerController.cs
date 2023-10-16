@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform cameraPivot;
     public float minXLook;
     public float maxXLook;
+
     private float camCurXRot;
     public float lookSensitivity;
 
