@@ -8,9 +8,7 @@ public class OnOffObject : MonoBehaviour, IInteractionObject
 
     IObject connectedObject;
 
-
-
-    public void Use()
+    public virtual void Use()
     {
         if (CheckCondition())
         {
@@ -22,7 +20,7 @@ public class OnOffObject : MonoBehaviour, IInteractionObject
         }
     }
 
-    public bool CheckCondition()
+    public virtual bool CheckCondition()
     {
         return true;
     }

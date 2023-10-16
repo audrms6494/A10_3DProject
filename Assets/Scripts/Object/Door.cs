@@ -8,7 +8,6 @@ public class Door : InActionObject
     public bool isOpen = false;
 
 
-
     public override IEnumerator Move()
     {
         isActive = true;
