@@ -13,6 +13,15 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public LayerMask groundLayerMask;
 
+    [Header("Look")]
+    [SerializeField] private Transform cameraPivot;
+    public float minXLook;
+    public float maxXLook;
+    private float camCurXRot;
+    public float lookSensitivity;
+
+    private Vector2 mouseDelta;
+
     [HideInInspector]
     private Rigidbody _rigidbody;
 
@@ -33,6 +42,19 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
+    private void LateUpdate()
+    {
+        LookAround();
+    }
+
+    private void LookAround()
+    {
+        camCurXRot += mouseDelta.y * lookSensitivity;
+        camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
+        cameraPivot.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
+
+        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+    }
 
     private void Move()
     {
@@ -63,6 +85,10 @@ public class PlayerController : MonoBehaviour
                 _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
 
         }
+    }
+    public void OnLookInput(InputAction.CallbackContext context)
+    {
+        mouseDelta = context.ReadValue<Vector2>();
     }
 
     private bool IsGrounded()
