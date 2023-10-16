@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CharacterHealth : MonoBehaviour
 {
+    // 테스트용
     [SerializeField] private int maxHealth = 100;
     private int health;
     public event Action OnDie;

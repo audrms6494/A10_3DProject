@@ -14,7 +14,7 @@ public class DamagableObject : MonoBehaviour, IDamagableObject
         // 함정 무효화 <함정 끄기.>
     }
 
-    protected virtual void Damaged(GameObject character)
+    protected virtual void OnDamaged(GameObject character)
     {
         character.GetComponent<CharacterHealth>().TakeDamage(damage);
 
@@ -24,6 +24,6 @@ public class DamagableObject : MonoBehaviour, IDamagableObject
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        Damaged(other.gameObject);
+        OnDamaged(other.gameObject);
     }
 }
