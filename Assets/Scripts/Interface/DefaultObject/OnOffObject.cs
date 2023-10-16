@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class OnOffObject : MonoBehaviour, IInteractionObject
 {
-    [SerializeField] GameObject ConnectedObject;
-
+    [SerializeField] List<GameObject> ConnectedObject;
 
     IObject connectedObject;
 
-    private void Awake()
-    {
-        connectedObject = ConnectedObject.GetComponent<IObject>();
-    }
 
 
     public void Use()
     {
         if (CheckCondition())
-            connectedObject.Use();
+        {
+            foreach (GameObject obj in ConnectedObject)
+            {
+                connectedObject = obj.GetComponent<IObject>();
+                connectedObject.Use();
+            }
+        }
     }
 
     public bool CheckCondition()
     {
-        throw new System.NotImplementedException();
+        return true;
     }
 
 }
