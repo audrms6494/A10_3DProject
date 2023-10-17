@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayerMask;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private LayerMask windMask;
 
     [Header("Look")]
     [SerializeField] private Transform cameraPivot;
@@ -133,5 +134,13 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawRay(transform.position + (-transform.forward * 0.2f), Vector3.down);
         Gizmos.DrawRay(transform.position + (transform.right * 0.2f), Vector3.down);
         Gizmos.DrawRay(transform.position + (-transform.right * 0.2f), Vector3.down);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (windMask.value == (windMask.value | (1 << other.gameObject.layer)))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(100f, 0.5f, 17.5f), 0.05f);
+        }
     }
 }
