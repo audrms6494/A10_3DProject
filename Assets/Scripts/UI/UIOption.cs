@@ -33,13 +33,15 @@ public class UIOption : UIBase
     // 변경 체크
     private bool _isChanged = false;
 
-    [Header("Slider Prefab")]
+    [Header("Option Prefabs")]
     [SerializeField] GameObject _sliderPrefab;
-    [Header("Dropdown Prefab")]
     [SerializeField] GameObject _dropdownPrefab;
-    [Header("Check Prefab")]
     [SerializeField] GameObject _checkboxPrefab;
 
+    [Header("Option Root")]
+    [SerializeField] GameObject _display;
+    [SerializeField] GameObject _sound;
+    [SerializeField] GameObject _UI;
 
     private Slider _MasterVolSlider;
     private TMP_Text _MasterVolTxt;
