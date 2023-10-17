@@ -34,6 +34,23 @@ public struct CustomResolution
             return false;
         return true;
     }
+    public override bool Equals(object obj)
+    {
+        if (obj.GetType() == typeof(CustomResolution))
+        {
+            var target = (CustomResolution)obj;
+            if (target.Width ==  Width && target.Height == Height)
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
+    }
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
 }
 
 [Serializable]
