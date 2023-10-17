@@ -93,8 +93,11 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             if (IsGrounded())
+            {
                 _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
-            animator.SetTrigger(Jump);
+                animator.SetTrigger(Jump);
+            }
+
         }
     }
     public void OnLookInput(InputAction.CallbackContext context)
