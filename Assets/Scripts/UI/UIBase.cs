@@ -41,6 +41,7 @@ public class UIBase : MonoBehaviour
     {
         ActAtClose?.Invoke();
         Destroy(gameObject);
+        ActAtClose = null;
     }
     /// <summary>
     /// 이 메소드를 사용하지 말 것.
@@ -50,6 +51,7 @@ public class UIBase : MonoBehaviour
         ActAtHide?.Invoke();
         if (gameObject != null)
             gameObject.SetActive(false);
+        ActAtHide = null;
     }
 
     protected virtual void SelfCloseUI()

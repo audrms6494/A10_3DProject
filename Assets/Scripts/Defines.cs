@@ -68,3 +68,10 @@ public struct AudioVolume
     public float Effect;
     public float UI;
 }
+
+public enum eOptionType
+{
+    Slider,
+    Dropdown,
+    Checkbox,
+}

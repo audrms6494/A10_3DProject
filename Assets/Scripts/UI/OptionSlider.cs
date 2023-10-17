@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionSlider : MonoBehaviour
+public class OptionSlider : OptionUI
 {
     public TMP_Text Title;
     public Slider SliderOption;
