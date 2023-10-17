@@ -13,12 +13,18 @@ public interface IMovingObject : IObject
     bool CheckCondition();
 }
 
-public interface IInteractionObject : IObject
+public interface IInteractionObject: IObject
 {
     bool CheckCondition();
 }
 
-public interface ITrapObject : IObject
+public interface IDamagableObject : IObject
 {
     void OnTriggerEnter(Collider other);
+}
+
+public interface IInteractable
+{
+    string GetInteractPrompt();
+    void OnInteract();
 }
