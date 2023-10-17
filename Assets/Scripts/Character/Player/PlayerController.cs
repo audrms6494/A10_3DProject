@@ -13,8 +13,11 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public LayerMask groundLayerMask;
 
+    [SerializeField] private Animator animator;
+
     [Header("Look")]
     [SerializeField] private Transform cameraPivot;
+
     public float minXLook;
     public float maxXLook;
 
@@ -23,9 +26,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 mouseDelta;
 
+    private static readonly int IsWalk = Animator.StringToHash("IsWalk");
+    // private static readonly int IsHit = Animator.StringToHash("IsHit");
+    private static readonly int Jump = Animator.StringToHash("Jump");
 
     [HideInInspector]
     private Rigidbody _rigidbody;
+
 
     public static PlayerController instance;
     private void Awake()
@@ -56,8 +63,6 @@ public class PlayerController : MonoBehaviour
         camCurXRot += mouseDelta.y * lookSensitivity;
         camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
         cameraPivot.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
-
-
     }
 
     private void Move()
@@ -74,10 +79,12 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             curMovementInput = context.ReadValue<Vector2>();
+            animator.SetBool(IsWalk, true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             curMovementInput = Vector2.zero;
+            animator.SetBool(IsWalk, false);
         }
     }
 
@@ -87,7 +94,7 @@ public class PlayerController : MonoBehaviour
         {
             if (IsGrounded())
                 _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
-
+            animator.SetTrigger(Jump);
         }
     }
     public void OnLookInput(InputAction.CallbackContext context)
