@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 mouseDelta;
 
+
     [HideInInspector]
     private Rigidbody _rigidbody;
 
@@ -50,11 +51,13 @@ public class PlayerController : MonoBehaviour
 
     private void LookAround()
     {
+        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+
         camCurXRot += mouseDelta.y * lookSensitivity;
         camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
         cameraPivot.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
 
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+
     }
 
     private void Move()
