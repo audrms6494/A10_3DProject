@@ -37,7 +37,7 @@ public class DataManager
     [Header("Default UI Options")]
     [SerializeField][Range(0.5f, 2f)] private float _UISize = 1.0f;
     [SerializeField][Range(0.5f, 2f)] private float _fontSizeMultiplier = 1.0f;
-    [SerializeField][Range(10f, 30f)] private float _UIremainTime = 10f;
+    [SerializeField][Range(10f, 30f)] private float _UIRemainTime = 10f;
     public float UISize
     {
         get => _UISize;
@@ -60,8 +60,8 @@ public class DataManager
     }
     public float UIRemainTime
     {
-        get => _UIremainTime;
-        set => _UIremainTime = value;
+        get => _UIRemainTime;
+        set => _UIRemainTime = value;
     }
 
     [Header("Defalut Display Options")]
