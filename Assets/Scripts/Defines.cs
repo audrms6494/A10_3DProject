@@ -80,3 +80,11 @@ public enum eOptionType
     Dropdown,
     Checkbox,
 }
+
+public enum ePipeType
+{
+    End,
+    Elbow,
+    Straight,
+    T,
+}

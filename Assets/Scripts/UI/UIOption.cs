@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class UIOption : UIBase
