@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class AnimationController : PlayerAnimations
 {
-    private static readonly int IsWalk = Animator.StringToHash("IsWalk");
-    private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int IsWalk = Animator.StringToHash("IsWalking");
     private static readonly int IsHit = Animator.StringToHash("IsHit");
 
     private CharacterHealth _healthSystem;
@@ -17,9 +16,10 @@ public class AnimationController : PlayerAnimations
         _healthSystem = GetComponent<CharacterHealth>();
     }
 
-    private void Move()
+    // Start is called before the first frame update
+    private void Move(Vector2 obj)
     {
-        animator.SetBool(IsWalk, true);
+        animator.SetBool(IsWalk, obj.magnitude > .5f);
     }
 
     private void Hit()
