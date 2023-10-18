@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/WaterScene.unity.meta
 guid: b00bcf20097d49c43987f49afa2863a7
 DefaultImporter:
+========
+guid: 0d03705af3cec0648a92247c112c8cfe
+PrefabImporter:
+>>>>>>>> 98f581268bfebabd6f3836607e403b0baa8f4ee8:Assets/Prefabs/Object/Saw_Trap Variant.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
