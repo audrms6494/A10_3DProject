@@ -39,7 +39,7 @@ public class UpDownCycleObject : MonoBehaviour, IMovingObject
 
     public virtual IEnumerator Move()
     {
-        Debug.Log(startPosition);
+        //Debug.Log(startPosition);
         isMoving = true;
 
         Vector3 startingPos = transform.position;
