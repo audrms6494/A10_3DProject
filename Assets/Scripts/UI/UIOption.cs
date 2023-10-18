@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
@@ -29,6 +30,26 @@ public class UIOption : UIBase
         ActAtClose = actAtClose;
         _OptionList = new List<OptionUI>();
         // TODO
+        // DIsplay
+        var opt = AddOption(eOptionType.Title, _contents);
+        (opt as OptionTitle).Initialize("Display Option", _baseFontSize[0] * SaveData.FontSizeMultiplier);
+
+        opt = AddOption(eOptionType.Dropdown, _contents);
+        (opt as OptionDropdown).Initialize("해상도", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.CurrentResolutionIndex, (value) => { SaveData.CurrentResolutionIndex = value; });
+        List<string> optionList = new List<string>();
+        foreach (var resolution in SaveData.ResolutionArray)
+            optionList.Add(resolution.ToString());
+        (opt as OptionDropdown).DropdownOption.AddOptions(optionList);
+
+        opt = AddOption(eOptionType.Dropdown, _contents);
+        (opt as OptionDropdown).Initialize("모니터", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.ActiveDisplay, (value) => { SaveData.ActiveDisplay = value; });
+        optionList.Clear();
+        for (int i = 0; i < SaveData.DisplayCount; i++)
+            optionList.Add(i.ToString());
+        (opt as OptionDropdown).DropdownOption.AddOptions(optionList);
+
+        opt = AddOption(eOptionType.Checkbox, _contents);
+        (opt as OptionCheckbox).Initialize("전체화면", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.IsFullScreen, (value) => { SaveData.IsFullScreen = value; });
     }
 
     public override void Refresh()
@@ -42,6 +63,9 @@ public class UIOption : UIBase
         GameObject obj;
         switch (type)
         {
+            case eOptionType.Title:
+                obj = Instantiate(_titlePrefab, root);
+                return obj.GetComponent<OptionTitle>();
             case eOptionType.Slider:
                 obj = Instantiate(_sliderPrefab, root);
                 return AddOptionList<OptionSlider>(obj);

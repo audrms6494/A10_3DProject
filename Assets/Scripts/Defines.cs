@@ -51,6 +51,10 @@ public struct CustomResolution
     {
         return base.GetHashCode();
     }
+    public override string ToString()
+    {
+        return $"{Width}x{Height}";
+    }
 }
 
 [Serializable]
@@ -71,7 +75,8 @@ public struct AudioVolume
 
 public enum eOptionType
 {
-    Slider,
+    Title = -1,
+    Slider = 0,
     Dropdown,
     Checkbox,
 }
