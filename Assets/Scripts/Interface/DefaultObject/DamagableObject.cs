@@ -24,6 +24,7 @@ public class DamagableObject : MonoBehaviour, IDamagableObject
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        OnDamaged(other.gameObject);
+        if(other.CompareTag("Player"))
+            OnDamaged(other.gameObject);
     }
 }
