@@ -24,7 +24,7 @@ public class OptionCheckbox : OptionUI
 
     private void InitValue(bool value)
     {
-        Checkbox.isOn = preValue;
+        Checkbox.isOn = value;
     }
 
     public override void Apply()
@@ -35,6 +35,7 @@ public class OptionCheckbox : OptionUI
     public override void Discard()
     {
         _apply?.Invoke(preValue);
+        Checkbox.isOn = preValue;
     }
 
     public void OnValueChanged(bool newValue)

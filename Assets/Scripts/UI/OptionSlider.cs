@@ -25,7 +25,7 @@ public class OptionSlider : OptionUI
 
     private void InitValue(float value)
     {
-        SliderOption.value = preValue;
+        SliderOption.value = value;
         Data.text = value.ToString("F2");
     }
 
@@ -37,6 +37,8 @@ public class OptionSlider : OptionUI
     public override void Discard()
     {
         _apply?.Invoke(preValue);
+        SliderOption.value = preValue;
+        Data.text = preValue.ToString("F2");
     }
 
     public void OnValueChanged(float newValue)

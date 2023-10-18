@@ -24,7 +24,7 @@ public class OptionDropdown : OptionUI
 
     private void InitValue(int value)
     {
-        DropdownOption.value = preValue;
+        DropdownOption.value = value;
     }
 
     public override void Apply()
@@ -35,6 +35,7 @@ public class OptionDropdown : OptionUI
     public override void Discard()
     {
         _apply?.Invoke(preValue);
+        DropdownOption.value = preValue;
     }
 
     public void OnValueChanged(int newValue)
