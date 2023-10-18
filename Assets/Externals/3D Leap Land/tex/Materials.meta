@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Prefabs/UI/OptionRoot.prefab.meta
+guid: 3b32020112c111e40874d307b7140a71
+PrefabImporter:
+========
 guid: 9348e8a9fedd9374682d24bcb26f689c
 folderAsset: yes
 DefaultImporter:
+>>>>>>>> e6c0dde2f0967d2cb5fffd45a9a5cc9753ac3994:Assets/Externals/3D Leap Land/tex/Materials.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

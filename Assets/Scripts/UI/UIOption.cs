@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,119 +10,138 @@ using UnityEngine.UI;
 public class UIOption : UIBase
 {
     private DataManager SaveData { get => GameManager.Data; }
-    // Display Option
-    private CustomResolution[] _ResolutionList { get => SaveData.ResolutionArray; }
-    private int _ResolutionIndex;
-    private int _preResolutionIndex;
-
-    private DisplayInfo[] displayInfos { get => SaveData.GetDisplayInfos(); }
-    private int _OutputDisplayIndex;
-    private int _preOutputDisplayIndex;
-
-    private bool _FullScreenMode;
-    private bool _preFullScreenMode;
-
-    // Sound Option
-    private AudioVolume _Volume;
-    private AudioVolume _preVolume;
-
-    // UI Option
-    private float _UISize;
-    private float _preUISize;
-    private float _FontSize;
-    private float _preFontSize;
 
     // 변경 체크
     private bool _isChanged = false;
 
+    // UI Option List
+    private List<OptionUI> _OptionList;
+
     [Header("Option Prefabs")]
+    [SerializeField] RectTransform _contents;
+    [SerializeField] GameObject _titlePrefab;
+    [SerializeField] GameObject _optionRootPrefab;
     [SerializeField] GameObject _sliderPrefab;
     [SerializeField] GameObject _dropdownPrefab;
     [SerializeField] GameObject _checkboxPrefab;
 
-    [Header("Option Root")]
-    [SerializeField] GameObject _display;
-    [SerializeField] GameObject _sound;
-    [SerializeField] GameObject _UI;
-
-    private Slider _MasterVolSlider;
-    private TMP_Text _MasterVolTxt;
-
-    private Slider _BGMVolSlider;
-    private TMP_Text _BGMVolTxt;
-
-    private Slider _EffectVolSlider;
-    private TMP_Text _EffectVolTxt;
-
-    private Slider _UIVolSlider;
-    private TMP_Text _UIVolTxt;
-
-    private TMP_Dropdown _ResolutionDropdown;
-    private TMP_Dropdown _outputDisplayDropdown;
-    private TMP_Dropdown _DisplayMode;
-
     public void Initialize(Action actAtClose)
     {
+        _isChanged = false;
         ActAtClose = actAtClose;
-
-        _Volume.Master = SaveData.MasterVolume;
-        _Volume.BGM = SaveData.BGMVolume;
-        _Volume.Effect = SaveData.EffectVolume;
-        _Volume.UI = SaveData.UIVolume;
-
-        _preVolume = _Volume;
-
+        _OptionList = new List<OptionUI>();
         // TODO
+        // DIsplay
+        var opt = AddOption(eOptionType.Title, _contents);
+        (opt as OptionTitle).Initialize("화면 설정", _baseFontSize[0] * SaveData.FontSizeMultiplier);
 
-        //Refresh();
+        opt = AddOption(eOptionType.Dropdown, _contents);
+        (opt as OptionDropdown).Initialize("해상도", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.CurrentResolutionIndex,
+            (value) => { if (SaveData.CurrentResolutionIndex != value) _isChanged = true; SaveData.CurrentResolutionIndex = value; });
+        List<string> optionList = new List<string>();
+        foreach (var resolution in SaveData.ResolutionArray)
+            optionList.Add(resolution.ToString());
+        (opt as OptionDropdown).DropdownOption.AddOptions(optionList);
+
+        opt = AddOption(eOptionType.Dropdown, _contents);
+        (opt as OptionDropdown).Initialize("모니터", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.ActiveDisplay,
+            (value) => { if (SaveData.ActiveDisplay != value) _isChanged = true; SaveData.ActiveDisplay = value; });
+        optionList.Clear();
+        for (int i = 0; i < SaveData.DisplayCount; i++)
+            optionList.Add(i.ToString());
+        (opt as OptionDropdown).DropdownOption.AddOptions(optionList);
+
+        opt = AddOption(eOptionType.Checkbox, _contents);
+        (opt as OptionCheckbox).Initialize("전체화면", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.IsFullScreen,
+            (value) => { if (SaveData.IsFullScreen != value) _isChanged = true; SaveData.IsFullScreen = value; });
+
+        // Sound
+        opt = AddOption(eOptionType.Title, _contents);
+        (opt as OptionTitle).Initialize("소리 설정", _baseFontSize[0] * SaveData.FontSizeMultiplier);
+
+        opt = AddOption(eOptionType.Slider, _contents);
+        (opt as OptionSlider).Initialize("전체 소리 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.MasterVolume,
+            (value) => { if (SaveData.MasterVolume != value) _isChanged = true; SaveData.MasterVolume = value; });
+
+        opt = AddOption(eOptionType.Slider, _contents);
+        (opt as OptionSlider).Initialize("효과음 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.EffectVolume,
+            (value) => { if (SaveData.EffectVolume != value) _isChanged = true; SaveData.EffectVolume = value; ; });
+
+        opt = AddOption(eOptionType.Slider, _contents);
+        (opt as OptionSlider).Initialize("UI 소리 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.UIVolume,
+            (value) => { if (SaveData.UIVolume != value) _isChanged = true; SaveData.UIVolume = value; });
+
+        opt = AddOption(eOptionType.Slider, _contents);
+        (opt as OptionSlider).Initialize("BGM 소리 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.BGMVolume,
+            (value) => { if (SaveData.BGMVolume != value) _isChanged = true; SaveData.BGMVolume = value; });
+
+        // UI
+        opt = AddOption(eOptionType.Title, _contents);
+        (opt as OptionTitle).Initialize("UI 설정", _baseFontSize[0] * SaveData.FontSizeMultiplier);
+
+        opt = AddOption(eOptionType.Slider, _contents);
+        (opt as OptionSlider).Initialize("UI 크기 설정", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.UISize,
+            (value) => { if (SaveData.UISize != value) _isChanged = true; SaveData.UISize = value; });
+
+        opt = AddOption(eOptionType.Slider, _contents);
+        (opt as OptionSlider).Initialize("Font 크기 설정", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.FontSizeMultiplier,
+            (value) => { if (SaveData.FontSizeMultiplier != value) _isChanged = true; SaveData.FontSizeMultiplier = value; });
+
     }
 
     public override void Refresh()
     {
         base.Refresh();
-        _MasterVolSlider.value = _Volume.Master;
-        _MasterVolTxt.text = _Volume.Master.ToString("F2");
+        // TODO
+    }
 
-        _BGMVolSlider.value = _Volume.BGM;
-        _BGMVolTxt.text = _Volume.BGM.ToString("F2");
+    private OptionUI AddOption(eOptionType type, RectTransform root)
+    {
+        GameObject obj;
+        switch (type)
+        {
+            case eOptionType.Title:
+                obj = Instantiate(_titlePrefab, root);
+                return obj.GetComponent<OptionTitle>();
+            case eOptionType.Slider:
+                obj = Instantiate(_sliderPrefab, root);
+                return AddOptionList<OptionSlider>(obj);
+            case eOptionType.Dropdown:
+                obj = Instantiate(_dropdownPrefab, root);
+                return AddOptionList<OptionDropdown>(obj);
+            case eOptionType.Checkbox:
+                obj = Instantiate(_checkboxPrefab, root);
+                return AddOptionList<OptionCheckbox>(obj);
+        }
+        return null;
+    }
 
-        _EffectVolSlider.value = _Volume.Effect;
-        _EffectVolTxt.text = _Volume.Effect.ToString("F2");
+    private T AddOptionList<T>(GameObject obj) where T : OptionUI
+    {
+        var opt = obj.GetComponent<T>();
+        _OptionList.Add(opt);
+        return opt;
+    }
 
-        _UIVolSlider.value = _Volume.UI;
-        _UIVolTxt.text = _Volume.UI.ToString("F2");
+    private OptionTitle AddOptionTitle()
+    {
+        var obj = Instantiate(_titlePrefab, _contents);
+        return obj.GetComponent<OptionTitle>();
+    }
 
-        _ResolutionDropdown.value = _ResolutionIndex;
-        _outputDisplayDropdown.value = _OutputDisplayIndex;
-        _DisplayMode.value = _FullScreenMode ? 0 : 1;
+    private RectTransform AddOptionRoot()
+    {
+        var obj = Instantiate(_optionRootPrefab, _contents);
+        return obj.GetComponent<RectTransform>();
     }
 
     public void SaveOption()
     {
-        // Display Option
-        SaveData.ActiveDisplay = _OutputDisplayIndex;
-        SaveData.CurrentResolutionIndex = _ResolutionIndex;
-        SaveData.IsFullScreen = _FullScreenMode;
-
-        _preResolutionIndex = _ResolutionIndex;
-        _preOutputDisplayIndex = _OutputDisplayIndex;
-        _preFullScreenMode = _FullScreenMode;
-
-        // Sound Option
-        SaveData.MasterVolume = _Volume.Master;
-        SaveData.BGMVolume = _Volume.BGM;
-        SaveData.EffectVolume = _Volume.Effect;
-        SaveData.UIVolume = _Volume.UI;
-
-        _preVolume = _Volume;
-
-        // UI Option
-        SaveData.UISize = _UISize;
-        SaveData.FontSizeMultiplier = _FontSize;
-
-        _preUISize = _UISize;
-        _preFontSize = _FontSize;
-
+        // TODO
+        foreach (var opt in _OptionList)
+        {
+            opt.Apply();
+        }
         // Success message
         var ui = UIManager.ShowUI<UIPopup>();
         if (ui != null)
@@ -135,82 +156,12 @@ public class UIOption : UIBase
     {
         if (_isChanged)
         {
-            _Volume = _preVolume;
-
-            //_FullScreenMode = _preFullScreenMode;
-            //SetResolution(_preResolutionIndex);
-            //_ResolutionIndex = _ResolutionList.FindIndex(x =>
-            //{
-            //    if (x.width == _Resolution.width && x.height == _Resolution.height)
-            //        return true;
-            //    return false;
-            //});
-
-            //_OutputDisplay = _preOutputDisplay;
-            //_OutputDisplayIndex = _OutputDisplayList.FindIndex(x =>
-            //{
-            //    if (x.Equals(_preOutputDisplay))
-            //        return true;
-            //    return false;
-            //});
-            //SetTargetDisplay(_OutputDisplayIndex);
+            // TODO
+            foreach (var opt in _OptionList)
+                opt.Discard();
+            _isChanged = false;
         }
         else
             SelfCloseUI();
-    }
-
-    public void SetMasterVol(float vol)
-    {
-        _Volume.Master = vol;
-        _isChanged = true;
-        _MasterVolTxt.text = _Volume.Master.ToString("F2");
-    }
-
-    public void SetBGMVol(float vol)
-    {
-        _Volume.BGM = vol;
-        _isChanged = true;
-        _BGMVolTxt.text = _Volume.BGM.ToString("F2");
-    }
-
-    public void SetEffectVol(float vol)
-    {
-        _Volume.Effect = vol;
-        _isChanged = true;
-        _EffectVolTxt.text = _Volume.Effect.ToString("F2");
-    }
-
-    public void SetUIVol(float vol)
-    {
-        _Volume.UI = vol;
-        _isChanged = true;
-        _UIVolTxt.text = _Volume.UI.ToString("F2");
-    }
-
-    public void SetTargetDisplay(int index)
-    {
-        var cam = Camera.main;
-        cam.targetDisplay = index;
-        _isChanged = true;
-    }
-
-    public void SetResolution(int index)
-    {
-        //Resolution resolution = _ResolutionList[index];
-        //Screen.SetResolution(resolution.width, resolution.height, _FullScreenMode);
-        //_Resolution = resolution;
-        _isChanged = true;
-    }
-
-    public void SetFullScreenMode(int screenMode)
-    {
-        bool isFullScreen;
-        if (screenMode == 0)
-            isFullScreen = true;
-        else
-            isFullScreen = false;
-        //Screen.SetResolution(_Resolution.width, _Resolution.height, isFullScreen);
-        _FullScreenMode = isFullScreen;
-        _isChanged = true;
     }
 }

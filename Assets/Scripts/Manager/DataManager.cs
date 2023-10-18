@@ -94,8 +94,24 @@ public class DataManager
         }
     }
     public CustomResolution[] ResolutionArray { get => _customResolutions.ToArray(); }
-    public int CurrentResolutionIndex { get => _customResolutions.FindIndex(x => x == _currentResolution); set => _currentResolution = _customResolutions[value]; }
-    public bool IsFullScreen { get => _isFullScreen; set => _isFullScreen = value; }
+    public int CurrentResolutionIndex
+    {
+        get => _customResolutions.FindIndex(x => x == _currentResolution);
+        set
+        {
+            _currentResolution = _customResolutions[value];
+            Screen.SetResolution(_currentResolution.Width, _currentResolution.Height, _isFullScreen);
+        }
+    }
+    public bool IsFullScreen
+    {
+        get => _isFullScreen;
+        set
+        {
+            _isFullScreen = value;
+            Screen.SetResolution(_currentResolution.Width, _currentResolution.Height, _isFullScreen);
+        }
+    }
     /// <summary>
     /// Linux, maxOS, Windows만 지원하므로 주의!!
     /// </summary>
