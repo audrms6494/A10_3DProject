@@ -6876,7 +6876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17c27d65b95ee74f9d7cc98da4c6898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeleportPosition: {x: 0, y: 10, z: 55}
+  TeleportPosition: {x: 0, y: 10, z: 60}
 --- !u!65 &8899695547794053499
 BoxCollider:
   m_ObjectHideFlags: 0
