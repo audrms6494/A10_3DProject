@@ -52,5 +52,6 @@ public class StandingPatrolWithJump : IPatrolPattern
             stateMachine.Jump();
             agent.enabled = false;
         }
+        controller.Move(new Vector3(0, stateMachine.verticalVelocity, 0) * Time.deltaTime);
     }
 }
