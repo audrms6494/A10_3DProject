@@ -1,27 +1,29 @@
 using System;
 using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
 
 [CustomEditor(typeof(Enemy))]
 public class EnemyEditor : Editor
 {
-    private PatrolPatterns patrolPattern;
+    private PatrolPatterns patternType;
 
     public override void OnInspectorGUI()
     {
-        serializedObject.Update();
-
         Enemy enemy = (Enemy)target;
         if (enemy.PatrolPattern != null )
         {
             switch (enemy.PatrolPattern)
             {
-                case CirclePatrol : patrolPattern = PatrolPatterns.CirclePatrol;
+                case CirclePatrol : patternType = PatrolPatterns.CirclePatrol;
                     break;
-                case RepeatPatrol : patrolPattern = PatrolPatterns.RepeatPatrol;
+                case RepeatPatrol : patternType = PatrolPatterns.RepeatPatrol;
                     break;
-                case StandingPatrol : patrolPattern = PatrolPatterns.StandingPatrol;
+                case StandingPatrol : patternType = PatrolPatterns.StandingPatrol;
                     break;
-                case RepeatPatrolWithJump : patrolPattern = PatrolPatterns.RepeatPatrolWithJump;
+                case RepeatPatrolWithJump : patternType = PatrolPatterns.RepeatPatrolWithJump;
+                    break;
+                case StandingPatrolWithJump : patternType = PatrolPatterns.StandingPatrolWithJump;
                     break;
             };
         }
@@ -29,12 +31,11 @@ public class EnemyEditor : Editor
         DrawDefaultInspector();
         if (!EditorApplication.isPlaying)
         {
-            PatrolPatterns lastPattern = patrolPattern;
-            patrolPattern = (PatrolPatterns)EditorGUILayout.EnumPopup("Patrol Pattern", patrolPattern);
-            if (lastPattern == patrolPattern )
+            PatrolPatterns lastPattern = patternType;
+            patternType = (PatrolPatterns)EditorGUILayout.EnumPopup("Patrol Pattern", patternType);
+            if (lastPattern == patternType )
                 return;
-
-            switch (patrolPattern)
+            switch (patternType)
             {
                 case PatrolPatterns.CirclePatrol:
                     enemy.PatrolPattern = new CirclePatrol();
@@ -48,8 +49,12 @@ public class EnemyEditor : Editor
                 case PatrolPatterns.RepeatPatrolWithJump:
                     enemy.PatrolPattern = new RepeatPatrolWithJump();
                     break;
+                case PatrolPatterns.StandingPatrolWithJump:
+                    enemy.PatrolPattern = new StandingPatrolWithJump();
+                    break;
             }
-            serializedObject.ApplyModifiedProperties();
+            EditorUtility.SetDirty(target);
+            
         }
     }
 }

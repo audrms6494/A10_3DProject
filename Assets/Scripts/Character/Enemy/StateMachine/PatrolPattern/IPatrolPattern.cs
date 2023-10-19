@@ -10,6 +10,7 @@ public enum PatrolPatterns
     RepeatPatrol,
     StandingPatrol,
     RepeatPatrolWithJump,
+    StandingPatrolWithJump,
 
 }
 public interface IPatrolPattern
