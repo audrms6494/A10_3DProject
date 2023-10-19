@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         if (windMask.value == (windMask.value | (1 << other.gameObject.layer)))
         {
-            if (transform.position.z < 30)
+            if (transform.position.z < 20)
             {
                 transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(1f, 0, 0), 0.07f);
             }
