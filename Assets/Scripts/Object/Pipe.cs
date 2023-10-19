@@ -7,7 +7,6 @@ public class Pipe : MonoBehaviour, IInteractable
     [SerializeField] private float Speed;
     [SerializeField] private List<Transform> movingPos;
     [SerializeField] private LayerMask _interactLayer;
-    private Transform _player;
 
     public string GetInteractPrompt()
     {
@@ -16,43 +15,27 @@ public class Pipe : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        if (_player != null)
-        {
-            Move(_player);
-        }
+        Move(GameManager.Instance.Player.transform);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Move(Transform obj)
     {
-        if (_interactLayer.value == (other.gameObject.layer & _interactLayer.value))
-        {
-            _player = other.gameObject.GetComponent<Transform>();
-        }
+        StartCoroutine(Moving(obj));
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        _player = null;
-    }
-
-    public void Move(Transform player)
-    {
-        StartCoroutine(Moving(player));
-    }
-
-    private IEnumerator Moving(Transform player)
+    private IEnumerator Moving(Transform obj)
     {
         int i = 0;
         Vector3 targetPos = movingPos[i++].position;
         while (i < movingPos.Count)
         {
             // TODO
-            Vector3 dir = (player.transform.position - targetPos).normalized;
-            player.transform.position += dir * Speed * Time.deltaTime;
+            Vector3 dir = (obj.transform.position - targetPos).normalized;
+            obj.transform.position += dir * Speed * Time.deltaTime;
 
-            if ((player.transform.position - targetPos).magnitude < 0.1f)
+            if ((obj.transform.position - targetPos).magnitude < 0.1f)
             {
-                player.transform.position = targetPos;
+                obj.transform.position = targetPos;
                 if (i >= movingPos.Count) break;
                 targetPos = movingPos[i++].position;
             }
