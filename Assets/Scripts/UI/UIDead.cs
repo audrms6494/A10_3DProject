@@ -18,14 +18,14 @@ public class UIDead : UIBase
 
     public void ReTry()
     {
-        SceneManager.LoadScene("ObjectTest");
         playerInput.actions.Enable();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void End()
     {
         // ∑π∫ß º±≈√ æ¿.
-        //SceneManager.LoadScene("");
         playerInput.actions.Enable();
+        //SceneManager.LoadScene("");
     }
 }
