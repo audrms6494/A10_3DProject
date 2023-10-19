@@ -37,5 +37,7 @@ public class CharacterHealth : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         playerInput.actions.Disable();
+        var ui = UIManager.ShowUI<UIDead>();
+        ui.Initalize(playerInput);
     }
 }

@@ -1,18 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using static UnityEditor.Progress;
 
-public class UIDead : MonoBehaviour
+public class UIDead : UIBase
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private PlayerInput playerInput;
+
+    public void Initalize(PlayerInput _playerInput)
     {
-        
+        playerInput = _playerInput;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ReTry()
     {
-        
+        SceneManager.LoadScene("ObjectTest");
+        playerInput.actions.Enable();
+    }
+
+    public void End()
+    {
+        // ∑π∫ß º±≈√ æ¿.
+        //SceneManager.LoadScene("");
+        playerInput.actions.Enable();
     }
 }
