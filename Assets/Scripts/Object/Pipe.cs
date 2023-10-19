@@ -30,7 +30,7 @@ public class Pipe : MonoBehaviour, IInteractable
 
     public void Move(Transform obj)
     {
-        obj.transform.parent.position = obj.transform.position + movingPos[movingPos.Count - 1].position;
+        obj.transform.parent.position = movingPos[movingPos.Count - 1].position;
         //StartCoroutine(Moving(obj));
     }
 
