@@ -12,8 +12,8 @@ public class Dragon : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // var ui = UIManager.ShowUI<UIGameClear>();
-            // ui.Initalize(playerInput, dragonName);
+            var ui = UIManager.ShowUI<UIGameClear>();
+            ui.Initalize(playerInput, dragonName);
         }
     }
 }
