@@ -851,7 +851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2302320201331248138, guid: d3a30be3704fe8c4faccca6da0ab0657, type: 3}
       propertyPath: PatrolPattern
-      value: 2639959735649697809
+      value: 2639959748733042688
       objectReference: {fileID: 0}
     - target: {fileID: 2302320201331248138, guid: d3a30be3704fe8c4faccca6da0ab0657, type: 3}
       propertyPath: managedReferences[2639959735649697800]
@@ -864,6 +864,10 @@ PrefabInstance:
     - target: {fileID: 2302320201331248138, guid: d3a30be3704fe8c4faccca6da0ab0657, type: 3}
       propertyPath: managedReferences[2639959735649697809]
       value: Assembly-CSharp CirclePatrol
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302320201331248138, guid: d3a30be3704fe8c4faccca6da0ab0657, type: 3}
+      propertyPath: managedReferences[2639959748733042688]
+      value: Assembly-CSharp StandingPatrolWithJump
       objectReference: {fileID: 0}
     - target: {fileID: 2302320201331248138, guid: d3a30be3704fe8c4faccca6da0ab0657, type: 3}
       propertyPath: managedReferences[2639959735649697800].Center
@@ -880,6 +884,10 @@ PrefabInstance:
     - target: {fileID: 2302320201331248138, guid: d3a30be3704fe8c4faccca6da0ab0657, type: 3}
       propertyPath: managedReferences[2639959735649697809].Radius
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302320201331248138, guid: d3a30be3704fe8c4faccca6da0ab0657, type: 3}
+      propertyPath: managedReferences[2639959748733042688].JumpDelay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2302320201331248138, guid: d3a30be3704fe8c4faccca6da0ab0657, type: 3}
       propertyPath: managedReferences[2639959716529439713].RepeatPoint1
