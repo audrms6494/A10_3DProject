@@ -7,6 +7,8 @@ public class DamagableObject : MonoBehaviour, IDamagableObject
     [SerializeField] public int damage;
 
 
+
+
     public virtual void Use()
     {
         // ±â´É

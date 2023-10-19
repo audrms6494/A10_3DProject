@@ -12,7 +12,7 @@ public class UpDownCycleObject : MonoBehaviour, IMovingObject
 
     private float elapsedTime; 
     private bool direction = true;
-    private bool isMoving = false;
+    protected bool isMoving = false;
     private Vector3 startPosition;
 
     private void Awake()

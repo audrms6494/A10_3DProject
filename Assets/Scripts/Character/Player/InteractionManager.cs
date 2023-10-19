@@ -17,7 +17,7 @@ public class InteractionManager : MonoBehaviour
     private IInteractable curInteractable;
 
     public TextMeshProUGUI promptText;
-    private Camera camera;
+    private new Camera camera;
 
 
     // Start is called before the first frame update
