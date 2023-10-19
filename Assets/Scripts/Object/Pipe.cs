@@ -4,23 +4,40 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour, IInteractable
 {
-    [SerializeField] private ePipeType PipeType;
     [SerializeField] private float Speed;
     [SerializeField] private List<Transform> movingPos;
+    [SerializeField] private LayerMask _interactLayer;
+    private Transform _player;
 
     public string GetInteractPrompt()
     {
-        throw new System.NotImplementedException();
+        return "</b>[E]</b>\n¿Ãµø";
+    }
+
+    public void OnInteract()
+    {
+        if (_player != null)
+        {
+            Move(_player);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_interactLayer.value == (other.gameObject.layer & _interactLayer.value))
+        {
+            _player = other.gameObject.GetComponent<Transform>();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        _player = null;
     }
 
     public void Move(Transform player)
     {
         StartCoroutine(Moving(player));
-    }
-
-    public void OnInteract()
-    {
-        throw new System.NotImplementedException();
     }
 
     private IEnumerator Moving(Transform player)
