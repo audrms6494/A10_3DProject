@@ -23,6 +23,11 @@ public interface IDamagableObject : IObject
     void OnTriggerEnter(Collider other);
 }
 
+public interface ITriggerObject : IObject
+{
+    void OnTriggerEnter(Collider other);
+}
+
 public interface IInteractable
 {
     string GetInteractPrompt();
