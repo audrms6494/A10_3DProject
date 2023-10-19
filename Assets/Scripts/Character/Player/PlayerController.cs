@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private LayerMask windMask;
+    [SerializeField] private LayerMask thunderMask;
+    [SerializeField] private LayerMask flowerJumpMask;
 
     [Header("Look")]
     [SerializeField] private Transform cameraPivot;
@@ -140,7 +142,27 @@ public class PlayerController : MonoBehaviour
     {
         if (windMask.value == (windMask.value | (1 << other.gameObject.layer)))
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(100f, 0.5f, 17.5f), 0.05f);
+            if (transform.position.z < 30)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(1f, 0, 0), 0.07f);
+            }
+
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(-1f, 0, 0), 0.07f);
+            }
+        }
+        else if (flowerJumpMask == (flowerJumpMask.value | (1 << other.gameObject.layer)))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(0, 1f, 0), 0.5f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (thunderMask.value == (thunderMask.value | (1 << other.gameObject.layer)))
+        {
+            transform.position = other.GetComponent<Teleport>().TeleportPosition;
         }
     }
 }
