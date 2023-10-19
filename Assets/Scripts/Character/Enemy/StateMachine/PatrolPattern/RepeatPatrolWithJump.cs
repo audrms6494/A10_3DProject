@@ -14,8 +14,8 @@ public class RepeatPatrolWithJump : IPatrolPattern
     private NavMeshAgent agent;
     private CharacterController controller;
     private EnemyStateMachine stateMachine;
-    public Vector3 currentDestination;
-    public Vector3 movementDirection = Vector3.zero;
+    private Vector3 currentDestination;
+    private Vector3 movementDirection = Vector3.zero;
     private Vector3 jumpStartPosition = Vector3.zero;
     public Transform RepeatPoint1;
     public Transform RepeatPoint2;
