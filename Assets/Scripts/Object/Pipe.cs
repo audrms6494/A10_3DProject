@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Pipe : MonoBehaviour, IInteractable
 {
     [SerializeField] private float Speed;
     [SerializeField] private List<Transform> movingPos;
-    [SerializeField] private LayerMask _interactLayer;
-
+    CapsuleCollider capsuleCollider;
+    PlayerInput input;
+    Rigidbody rb;
     public string GetInteractPrompt()
     {
         return "¿Ãµø";
@@ -15,7 +17,13 @@ public class Pipe : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        Move(GameManager.Instance.Player.transform);
+        capsuleCollider = GameManager.Instance.Player.GetComponent<CapsuleCollider>();
+        capsuleCollider.enabled = false;
+        input = GameManager.Instance.Player.GetComponent<PlayerInput>();
+        input.enabled = false;
+        rb = GameManager.Instance.Player.GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        Move(GameManager.Instance.Player.transform.GetChild(0));
     }
 
     public void Move(Transform obj)
@@ -30,8 +38,9 @@ public class Pipe : MonoBehaviour, IInteractable
         while (i < movingPos.Count)
         {
             // TODO
-            Vector3 dir = (obj.transform.position - targetPos).normalized;
-            obj.transform.position += dir * Speed * Time.deltaTime;
+            Vector3 dir = (targetPos - obj.transform.position).normalized;
+            rb.velocity = dir * Speed;
+            //obj.transform.position += dir * Speed * Time.deltaTime;
 
             if ((obj.transform.position - targetPos).magnitude < 0.1f)
             {
@@ -41,5 +50,8 @@ public class Pipe : MonoBehaviour, IInteractable
             }
             yield return null;
         }
+        capsuleCollider.enabled = true;
+        rb.useGravity = true;
+        input.enabled = true;
     }
 }
