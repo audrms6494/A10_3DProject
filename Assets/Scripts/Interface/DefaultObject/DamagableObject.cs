@@ -6,7 +6,7 @@ public class DamagableObject : MonoBehaviour, IDamagableObject
 {
     [SerializeField] public int damage;
 
-    private static readonly int Hit = Animator.StringToHash("Hit");
+
 
 
     public virtual void Use()
@@ -21,7 +21,6 @@ public class DamagableObject : MonoBehaviour, IDamagableObject
         character.GetComponent<CharacterHealth>().TakeDamage(damage);
 
         // animation 처리
-        character.transform.GetChild(0).GetComponent<Animator>().SetTrigger(Hit);
         // 등등
     }
 
