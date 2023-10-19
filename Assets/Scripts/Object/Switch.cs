@@ -5,6 +5,7 @@ using UnityEngine;
 public class Switch : OnOffObject, IInteractable
 {
     [SerializeField] public string Name;
+    [SerializeField] GameObject checkObj;
 
 
     public string GetInteractPrompt()
@@ -14,7 +15,15 @@ public class Switch : OnOffObject, IInteractable
 
     public void OnInteract()
     {
-        Debug.Log("Active");
-        Use();
+        if(CheckCondition())
+            Use();
+    }
+
+    public override bool CheckCondition()
+    {
+        if(checkObj.activeSelf)
+            return true;
+        else
+            return false;
     }
 }
