@@ -11,7 +11,7 @@ public class Pipe : MonoBehaviour, IInteractable
 
     public string GetInteractPrompt()
     {
-        return "</b>[E]</b>\n이동";
+        return "이동";
     }
 
     public void OnInteract()
