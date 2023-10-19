@@ -1,5 +1,5 @@
 # A10_3DProject
-Unity 3D 플랫포머 
+Unity 플랫포머 장르의 3D 게임 구현하기
 
 ## 🎈 Team S.A
 https://teamsparta.notion.site/10-ee2be3e6ea284808afbcd0871f77dab6
