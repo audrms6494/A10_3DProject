@@ -12,8 +12,17 @@ https://teamsparta.notion.site/10-ee2be3e6ea284808afbcd0871f77dab6
 ## 🕰️ 개발 기간
 * 23.10.13 ~ 23.10.20
 
+## 🛠 개발환경
+- **Language** : C#
+- **Engine** : Unity 2022.3.2f1
+- **IDE** : Visual Studio 2022
+- **Framework** : .NET 6.0
+
+## 📃 와이어프레임
+https://app.diagrams.net/#G1dwqY5zS9WL1eFBrrB_5vjCEBd5dw1e8r
+
 ### 구성원
- - 송명근(팀원) / https://github.com/audrms6494
+ - 송명근(팀장) / https://github.com/audrms6494
  - 김진환(팀원) / https://github.com/NewRound
  - 윤지석(팀원) / https://github.com/noyyo
  - 채이환(팀원) / https://github.com/Hwan007
