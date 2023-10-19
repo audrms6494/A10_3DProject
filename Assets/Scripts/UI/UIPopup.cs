@@ -20,7 +20,6 @@ public class UIPopup : UIBase
             if (_duration < _time)
                 SelfHideUI();
         }
-
     }
 
     protected override void OnEnable()
