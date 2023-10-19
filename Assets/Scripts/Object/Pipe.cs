@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Pipe : MonoBehaviour, IInteractable
 {
     [SerializeField] private float Speed;
     [SerializeField] private List<Transform> movingPos;
-    [SerializeField] private LayerMask _interactLayer;
-    private Transform _player;
-
+    CapsuleCollider capsuleCollider;
+    PlayerInput input;
+    Rigidbody rb;
     public string GetInteractPrompt()
     {
         return "¿Ãµø";
@@ -16,47 +17,41 @@ public class Pipe : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        if (_player != null)
-        {
-            Move(_player);
-        }
+        capsuleCollider = GameManager.Instance.Player.GetComponent<CapsuleCollider>();
+        capsuleCollider.enabled = false;
+        input = GameManager.Instance.Player.GetComponent<PlayerInput>();
+        input.enabled = false;
+        rb = GameManager.Instance.Player.GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        Move(GameManager.Instance.Player.transform.GetChild(0));
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Move(Transform obj)
     {
-        if (_interactLayer.value == (other.gameObject.layer & _interactLayer.value))
-        {
-            _player = other.gameObject.GetComponent<Transform>();
-        }
+        StartCoroutine(Moving(obj));
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        _player = null;
-    }
-
-    public void Move(Transform player)
-    {
-        StartCoroutine(Moving(player));
-    }
-
-    private IEnumerator Moving(Transform player)
+    private IEnumerator Moving(Transform obj)
     {
         int i = 0;
         Vector3 targetPos = movingPos[i++].position;
         while (i < movingPos.Count)
         {
             // TODO
-            Vector3 dir = (player.transform.position - targetPos).normalized;
-            player.transform.position += dir * Speed * Time.deltaTime;
+            Vector3 dir = (targetPos - obj.transform.position).normalized;
+            rb.velocity = dir * Speed;
+            //obj.transform.position += dir * Speed * Time.deltaTime;
 
-            if ((player.transform.position - targetPos).magnitude < 0.1f)
+            if ((obj.transform.position - targetPos).magnitude < 0.1f)
             {
-                player.transform.position = targetPos;
+                obj.transform.position = targetPos;
                 if (i >= movingPos.Count) break;
                 targetPos = movingPos[i++].position;
             }
             yield return null;
         }
+        capsuleCollider.enabled = true;
+        rb.useGravity = true;
+        input.enabled = true;
     }
 }
