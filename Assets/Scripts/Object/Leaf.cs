@@ -5,6 +5,7 @@ using UnityEngine;
 public class Leaf : MonoBehaviour, IInteractable
 {
     public Vector3 destinationPoisition;
+    public float speed;
     public bool gameStart;
 
     public string GetInteractPrompt()
@@ -23,7 +24,7 @@ public class Leaf : MonoBehaviour, IInteractable
     {
         if (gameStart)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destinationPoisition, 0.01f);
+            transform.position = Vector3.MoveTowards(transform.position, destinationPoisition, speed);
         }
     }
 }
