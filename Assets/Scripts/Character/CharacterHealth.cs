@@ -15,7 +15,7 @@ public class CharacterHealth : MonoBehaviour
     public event Action OnDie;
 
     private static readonly int Hit = Animator.StringToHash("Hit");
-    private static readonly int dieHash = Animator.StringToHash("Die");
+    private static readonly int dieHash = Animator.StringToHash("Dead");
     public bool IsDead => health == 0;
 
 
