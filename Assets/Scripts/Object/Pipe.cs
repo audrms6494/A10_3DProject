@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Pipe : MonoBehaviour, IInteractable
 {
@@ -17,18 +18,20 @@ public class Pipe : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        capsuleCollider = GameManager.Instance.Player.GetComponent<CapsuleCollider>();
-        capsuleCollider.enabled = false;
-        input = GameManager.Instance.Player.GetComponent<PlayerInput>();
-        input.enabled = false;
-        rb = GameManager.Instance.Player.GetComponent<Rigidbody>();
-        rb.useGravity = false;
+        //capsuleCollider = GameManager.Instance.Player.GetComponent<CapsuleCollider>();
+        //capsuleCollider.enabled = false;
+        //input = GameManager.Instance.Player.GetComponent<PlayerInput>();
+        //input.enabled = false;
+        //rb = GameManager.Instance.Player.GetComponent<Rigidbody>();
+        //rb.useGravity = false;
+
         Move(GameManager.Instance.Player.transform.GetChild(0));
     }
 
     public void Move(Transform obj)
     {
-        StartCoroutine(Moving(obj));
+        obj.transform.parent.position = movingPos[movingPos.Count - 1].position;
+        //StartCoroutine(Moving(obj));
     }
 
     private IEnumerator Moving(Transform obj)
