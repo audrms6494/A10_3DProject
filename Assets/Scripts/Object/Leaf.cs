@@ -10,7 +10,7 @@ public class Leaf : MonoBehaviour, IInteractable
 
     public string GetInteractPrompt()
     {
-        string text = "Game Start";
+        string text = "출발하기";
         return text;
     }
 
