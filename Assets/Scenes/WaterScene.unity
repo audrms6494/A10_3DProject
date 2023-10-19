@@ -6343,6 +6343,14 @@ PrefabInstance:
       propertyPath: promptText
       value: 
       objectReference: {fileID: 168151248}
+    - target: {fileID: 6265326604259378769, guid: 55616ae20c8a10b479492eb4b9ca64da, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 168151248}
+    - target: {fileID: 6265326604259378769, guid: 55616ae20c8a10b479492eb4b9ca64da, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 8320
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
