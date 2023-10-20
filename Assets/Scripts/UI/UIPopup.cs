@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class UIPopup : UIBase
 {
+    private DataManager Data { get => GameManager.Data; }
+
     [Header("내용이 표시되는 오브젝트")]
     [SerializeField] private TMP_Text _title;
     [SerializeField] private TMP_Text _description;
@@ -32,7 +34,7 @@ public class UIPopup : UIBase
 
     public void Initialize(string data, string title = null, Action actAtHide = null, bool temp = false, float duration = 0.0f)
     {
-        InitialSize();
+        RefreshSize();
         ActAtHide = actAtHide;
         if (title == null)
         {
@@ -80,5 +82,12 @@ public class UIPopup : UIBase
     protected override void SelfHideUI()
     {
         UIManager.HideUI(this);
+    }
+
+    public override void RefreshSize()
+    {
+        base.RefreshSize();
+        _title.fontSize = _baseFontSize[0] * Data.FontSizeMultiplier;
+        _description.fontSize = _baseFontSize[1] * Data.FontSizeMultiplier;
     }
 }

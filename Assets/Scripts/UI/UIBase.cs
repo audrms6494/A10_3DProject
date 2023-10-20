@@ -29,7 +29,7 @@ public class UIBase : MonoBehaviour
         gameObject.transform.localScale = Vector3.one * UIManager.Instance.UISize;
     }
 
-    public virtual void Refresh()
+    public virtual void RefreshSize()
     {
         InitialSize();
     }

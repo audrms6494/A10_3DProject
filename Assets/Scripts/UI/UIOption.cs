@@ -28,7 +28,7 @@ public class UIOption : UIBase
         transform.localScale = Vector3.one * SaveData.UISize;
         if (_OptionList != null && _TitleList != null)
         {
-            Refresh();
+            RefreshSize();
             return;
         }
         _OptionList = new List<OptionUI>();
@@ -91,9 +91,9 @@ public class UIOption : UIBase
 
     }
 
-    public override void Refresh()
+    public override void RefreshSize()
     {
-        base.Refresh();
+        base.RefreshSize();
         // TODO
         transform.localScale = Vector3.one * SaveData.UISize;
         foreach (var item in _OptionList)
@@ -145,7 +145,7 @@ public class UIOption : UIBase
         {
             opt.Apply();
         }
-        Refresh();
+        RefreshSize();
         // Success message
         var ui = UIManager.ShowUI<UIPopup>();
         if (ui != null)
