@@ -53,4 +53,11 @@ public class Enemy : MonoBehaviour
         Agent.angularSpeed = Data.RotateSpeed;
         Agent.acceleration = Data.Acceleration;
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Target.TakeDamage(Data.Damage);
+        }
+    }
 }
