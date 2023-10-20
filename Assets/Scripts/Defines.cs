@@ -14,6 +14,9 @@ public enum eSoundType
 public enum eUIType
 {
     Popup,
+    Option,
+    Dead,
+    GameClear,
 }
 
 [System.Serializable]
