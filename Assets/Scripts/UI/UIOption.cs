@@ -26,6 +26,7 @@ public class UIOption : UIBase
         _isChanged = false;
         ActAtClose = actAtClose;
         _OptionList = new List<OptionUI>();
+        transform.localScale = Vector3.one * SaveData.UISize;
         // TODO
         // DIsplay
         var opt = AddOption(eOptionType.Title, _contents);
@@ -89,6 +90,11 @@ public class UIOption : UIBase
     {
         base.Refresh();
         // TODO
+        transform.localScale = Vector3.one * SaveData.UISize;
+        foreach (var item in _OptionList)
+        {
+
+        }
     }
 
     private OptionUI AddOption(eOptionType type, RectTransform root)

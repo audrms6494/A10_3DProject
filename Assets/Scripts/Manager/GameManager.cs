@@ -22,4 +22,10 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.ChangeBGM(0);
     }
+
+    private void Update()
+    {
+        if (Player == null)
+            Player = GameObject.Find(nameof(Player));
+    }
 }
