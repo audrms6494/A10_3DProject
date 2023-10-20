@@ -25,6 +25,6 @@ public class UIDead : UIBase
     public void End()
     {
         playerInput.actions.Enable();
-        //SceneManager.LoadScene("∑π∫ß º±≈√ æ¿");
+        SceneManager.LoadScene("StartScene");
     }
 }
