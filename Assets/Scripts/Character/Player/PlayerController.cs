@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -108,6 +109,16 @@ public class PlayerController : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
     }
 
+    public void OnEscape(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Time.timeScale = 0;
+            var ui = UIManager.ShowUI<UIOption>();
+            ui.Initialize(() => { Time.timeScale = 1; Cursor.lockState = CursorLockMode.Locked; });
+        }
+    }
     private bool IsGrounded()
     {
         Ray[] rays = new Ray[4]

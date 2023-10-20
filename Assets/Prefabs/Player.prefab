@@ -922,6 +922,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 64cdba42-5247-443e-863d-2ddf13ad1790
     m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4613322661946747104}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnEscape
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: be605986-1322-4e6c-a12d-ab9ef49e8e7c
+    m_ActionName: Player/Esc[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -957,6 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba9d7b3286ff3740a68a50fb40c7069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   maxHealth: 100
 --- !u!1 &2916331815637804052
 GameObject:
