@@ -19,7 +19,7 @@ public class UIGameClear : UIBase
     public void GoBackHome()
     {
         playerInput.actions.Enable();
-        //SceneManager.LoadScene("스테이지 선택 씬 이름");
+        SceneManager.LoadScene("StartScene");
     }
 
 }
