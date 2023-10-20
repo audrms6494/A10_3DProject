@@ -12,4 +12,9 @@ public class OptionTitle : OptionUI
         Title.text = title;
         Title.fontSize = fontSize;
     }
+
+    public override void Refresh(float fontSize)
+    {
+        Title.fontSize = fontSize;
+    }
 }

@@ -111,12 +111,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnEscape(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && !UIManager.IsOpen(eUIType.Option))
+        if (context.phase == InputActionPhase.Performed && (!UIManager.IsOpen(eUIType.Option) || UIManager.IsHide(eUIType.Option)))
         {
             Cursor.lockState = CursorLockMode.Confined;
-            Time.timeScale = 0;
             var ui = UIManager.ShowUI<UIOption>();
-            ui.Initialize(() => { Time.timeScale = 1; Cursor.lockState = CursorLockMode.Locked; });
+            ui.Initialize(() => { Cursor.lockState = CursorLockMode.Locked; });
         }
     }
     private bool IsGrounded()

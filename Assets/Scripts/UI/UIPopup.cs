@@ -12,7 +12,7 @@ public class UIPopup : UIBase
     private float _time;
     private float _duration;
 
-    private void LateUpdate()
+    private void Update()
     {
         _time += Time.deltaTime;
         if (IsTemp)

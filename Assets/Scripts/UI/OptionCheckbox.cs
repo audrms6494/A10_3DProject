@@ -39,4 +39,9 @@ public class OptionCheckbox : OptionUI
     {
         Apply();
     }
+
+    public override void Refresh(float fontSize)
+    {
+        Title.fontSize = fontSize;
+    }
 }
