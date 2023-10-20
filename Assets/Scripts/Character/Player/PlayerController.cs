@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnEscape(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && !UIManager.IsOpen(eUIType.Option))
         {
             Cursor.lockState = CursorLockMode.Confined;
             Time.timeScale = 0;

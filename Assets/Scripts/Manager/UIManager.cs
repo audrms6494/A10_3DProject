@@ -73,6 +73,12 @@ public class UIManager
         {
             case eUIType.Popup:
                 return ShowUI<UIPopup>(root);
+            case eUIType.Option:
+                return ShowUI<UIOption>(root);
+            case eUIType.Dead:
+                return ShowUI<UIDead>(root);
+            case eUIType.GameClear:
+                return ShowUI<UIGameClear>(root);
             default:
                 return null;
         }
@@ -240,6 +246,12 @@ public class UIManager
         {
             case eUIType.Popup:
                 return IsOpen<UIPopup>();
+            case eUIType.Option:
+                return IsOpen<UIOption>();
+            case eUIType.Dead:
+                return IsOpen<UIDead>();
+            case eUIType.GameClear:
+                return IsOpen<UIGameClear>();
             default:
                 return false;
         }
@@ -275,6 +287,12 @@ public class UIManager
         {
             case eUIType.Popup:
                 return IsHide<UIPopup>();
+            case eUIType.Option:
+                return IsHide<UIOption>();
+            case eUIType.Dead:
+                return IsHide<UIDead>();
+            case eUIType.GameClear:
+                return IsHide<UIGameClear>();
             default:
                 return false;
         }
