@@ -12,11 +12,11 @@ public class UIOption : UIBase
 
     // UI Option List
     private List<OptionUI> _OptionList;
+    private List<OptionUI> _TitleList;
 
     [Header("Option Prefabs")]
     [SerializeField] RectTransform _contents;
     [SerializeField] GameObject _titlePrefab;
-    [SerializeField] GameObject _optionRootPrefab;
     [SerializeField] GameObject _sliderPrefab;
     [SerializeField] GameObject _dropdownPrefab;
     [SerializeField] GameObject _checkboxPrefab;
@@ -25,28 +25,33 @@ public class UIOption : UIBase
     {
         _isChanged = false;
         ActAtClose = actAtClose;
-        _OptionList = new List<OptionUI>();
         transform.localScale = Vector3.one * SaveData.UISize;
+        if (_OptionList != null && _TitleList != null)
+        {
+            Refresh();
+            return;
+        }
+        _OptionList = new List<OptionUI>();
+        _TitleList = new List<OptionUI>();
         // TODO
         // DIsplay
         var opt = AddOption(eOptionType.Title, _contents);
         (opt as OptionTitle).Initialize("화면 설정", _baseFontSize[0] * SaveData.FontSizeMultiplier);
 
         opt = AddOption(eOptionType.Dropdown, _contents);
-        (opt as OptionDropdown).Initialize("해상도", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.CurrentResolutionIndex,
-            (value) => { if (SaveData.CurrentResolutionIndex != value) _isChanged = true; SaveData.CurrentResolutionIndex = value; });
         List<string> optionList = new List<string>();
         foreach (var resolution in SaveData.ResolutionArray)
             optionList.Add(resolution.ToString());
-        (opt as OptionDropdown).DropdownOption.AddOptions(optionList);
+        (opt as OptionDropdown).Initialize("해상도", _baseFontSize[1] * SaveData.FontSizeMultiplier, optionList, SaveData.CurrentResolutionIndex,
+            (value) => { if (SaveData.CurrentResolutionIndex != value) _isChanged = true; SaveData.CurrentResolutionIndex = value; });
+        
 
         opt = AddOption(eOptionType.Dropdown, _contents);
-        (opt as OptionDropdown).Initialize("모니터", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.ActiveDisplay,
-            (value) => { if (SaveData.ActiveDisplay != value) _isChanged = true; SaveData.ActiveDisplay = value; });
         optionList.Clear();
         for (int i = 0; i < SaveData.DisplayCount; i++)
             optionList.Add(i.ToString());
-        (opt as OptionDropdown).DropdownOption.AddOptions(optionList);
+        (opt as OptionDropdown).Initialize("모니터", _baseFontSize[1] * SaveData.FontSizeMultiplier, optionList, SaveData.ActiveDisplay,
+            (value) => { if (SaveData.ActiveDisplay != value) _isChanged = true; SaveData.ActiveDisplay = value; });
 
         opt = AddOption(eOptionType.Checkbox, _contents);
         (opt as OptionCheckbox).Initialize("전체화면", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.IsFullScreen,
@@ -93,7 +98,12 @@ public class UIOption : UIBase
         transform.localScale = Vector3.one * SaveData.UISize;
         foreach (var item in _OptionList)
         {
-
+            item.transform.localScale = Vector3.one * SaveData.UISize;
+            item.Refresh(_baseFontSize[1] * SaveData.FontSizeMultiplier);
+        }
+        foreach (var item in _TitleList)
+        {
+            item.Refresh(_baseFontSize[0] * SaveData.FontSizeMultiplier);
         }
     }
 
@@ -104,7 +114,7 @@ public class UIOption : UIBase
         {
             case eOptionType.Title:
                 obj = Instantiate(_titlePrefab, root);
-                return obj.GetComponent<OptionTitle>();
+                return AddOptionList<OptionTitle>(obj);
             case eOptionType.Slider:
                 obj = Instantiate(_sliderPrefab, root);
                 return AddOptionList<OptionSlider>(obj);
@@ -121,20 +131,11 @@ public class UIOption : UIBase
     private T AddOptionList<T>(GameObject obj) where T : OptionUI
     {
         var opt = obj.GetComponent<T>();
-        _OptionList.Add(opt);
+        if (typeof(T) == typeof(OptionTitle))
+            _TitleList.Add(opt);
+        else
+            _OptionList.Add(opt);
         return opt;
-    }
-
-    private OptionTitle AddOptionTitle()
-    {
-        var obj = Instantiate(_titlePrefab, _contents);
-        return obj.GetComponent<OptionTitle>();
-    }
-
-    private RectTransform AddOptionRoot()
-    {
-        var obj = Instantiate(_optionRootPrefab, _contents);
-        return obj.GetComponent<RectTransform>();
     }
 
     public void SaveOption()
@@ -144,13 +145,13 @@ public class UIOption : UIBase
         {
             opt.Apply();
         }
+        Refresh();
         // Success message
         var ui = UIManager.ShowUI<UIPopup>();
         if (ui != null)
         {
             ui.Initialize("설정이 저장되었습니다.", null, null, true, 1f);
         }
-
         _isChanged = false;
     }
 
@@ -164,6 +165,6 @@ public class UIOption : UIBase
             _isChanged = false;
         }
         else
-            SelfCloseUI();
+            SelfHideUI();
     }
 }

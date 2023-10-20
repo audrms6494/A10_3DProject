@@ -46,4 +46,10 @@ public class OptionSlider : OptionUI
         Data.text = newValue.ToString("F2");
         Apply();
     }
+
+    public override void Refresh(float fontSize)
+    {
+        Title.fontSize = fontSize;
+        Data.fontSize = fontSize;
+    }
 }

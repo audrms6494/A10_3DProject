@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 8897702664824820240}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8086115670473038797
 MonoBehaviour:
@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c6126c48f28184887eb04b4ac7d356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerPrefab: {fileID: 2861509098143456808, guid: 55616ae20c8a10b479492eb4b9ca64da, type: 3}
+  StageClearFlags: 000000
   _data:
     _masterVol: 0.5
     _BGMVol: 0.5
@@ -52,11 +54,15 @@ MonoBehaviour:
     _UIVol: 0.5
     _UISize: 1
     _fontSizeMultiplier: 1
-    _UIremainTime: 10
+    _UIRemainTime: 10
     _activeDisplay: 0
     _customResolutions:
+    - Width: 1280
+      Height: 720
     - Width: 1920
       Height: 1080
+    - Width: 2560
+      Height: 1440
     _currentResolution:
       Width: 1920
       Height: 1080

@@ -13,10 +13,11 @@ public class OptionDropdown : OptionUI
     private int preValue;
     private Action<int> _apply;
 
-    public void Initialize(string title, float fontSize, int initValue, Action<int> apply)
+    public void Initialize(string title, float fontSize, List<string> options, int initValue, Action<int> apply)
     {
         Title.text = title;
         Title.fontSize = fontSize;
+        DropdownOption.AddOptions(options);
         preValue = initValue;
         _apply = apply;
         InitValue(initValue);
@@ -41,5 +42,11 @@ public class OptionDropdown : OptionUI
     public void OnValueChanged(int newValue)
     {
         Apply();
+    }
+
+    public override void Refresh(float fontSize)
+    {
+        Title.fontSize = fontSize;
+        DropdownOption.itemText.fontSize = fontSize;
     }
 }

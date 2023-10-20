@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public static DataManager Data { get => Instance._data; }
-    public GameObject Player;
+    [SerializeField] private GameObject PlayerPrefab;
+    public GameObject Player { get; private set; }
     public bool[] StageClearFlags = new bool[3];
 
     [SerializeField] private DataManager _data;
@@ -24,9 +25,9 @@ public class GameManager : MonoBehaviour
         SoundManager.ChangeBGM(0);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (Player == null)
-            Player = GameObject.Find(nameof(Player));
+            Player = GameObject.FindWithTag(PlayerPrefab.tag);
     }
 }

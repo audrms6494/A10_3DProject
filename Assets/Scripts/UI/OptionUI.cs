@@ -13,4 +13,9 @@ public class OptionUI : MonoBehaviour
     {
 
     }
+
+    public virtual void Refresh(float fontSize)
+    {
+
+    }
 }
