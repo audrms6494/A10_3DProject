@@ -44,7 +44,7 @@ public class UIOption : UIBase
             optionList.Add(resolution.ToString());
         (opt as OptionDropdown).Initialize("해상도", _baseFontSize[1] * SaveData.FontSizeMultiplier, optionList, SaveData.CurrentResolutionIndex,
             (value) => { if (SaveData.CurrentResolutionIndex != value) _isChanged = true; SaveData.CurrentResolutionIndex = value; });
-        
+
 
         opt = AddOption(eOptionType.Dropdown, _contents);
         optionList.Clear();
@@ -62,19 +62,19 @@ public class UIOption : UIBase
         (opt as OptionTitle).Initialize("소리 설정", _baseFontSize[0] * SaveData.FontSizeMultiplier);
 
         opt = AddOption(eOptionType.Slider, _contents);
-        (opt as OptionSlider).Initialize("전체 소리 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.MasterVolume,
+        (opt as OptionSlider).Initialize("전체 소리 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, .0f, 1f, SaveData.MasterVolume,
             (value) => { if (SaveData.MasterVolume != value) _isChanged = true; SaveData.MasterVolume = value; });
 
         opt = AddOption(eOptionType.Slider, _contents);
-        (opt as OptionSlider).Initialize("효과음 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.EffectVolume,
+        (opt as OptionSlider).Initialize("효과음 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, .0f, 1f, SaveData.EffectVolume,
             (value) => { if (SaveData.EffectVolume != value) _isChanged = true; SaveData.EffectVolume = value; ; });
 
         opt = AddOption(eOptionType.Slider, _contents);
-        (opt as OptionSlider).Initialize("UI 소리 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.UIVolume,
+        (opt as OptionSlider).Initialize("UI 소리 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, .0f, 1f, SaveData.UIVolume,
             (value) => { if (SaveData.UIVolume != value) _isChanged = true; SaveData.UIVolume = value; });
 
         opt = AddOption(eOptionType.Slider, _contents);
-        (opt as OptionSlider).Initialize("BGM 소리 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.BGMVolume,
+        (opt as OptionSlider).Initialize("BGM 소리 크기", _baseFontSize[1] * SaveData.FontSizeMultiplier, .0f, 1f, SaveData.BGMVolume,
             (value) => { if (SaveData.BGMVolume != value) _isChanged = true; SaveData.BGMVolume = value; });
 
         // UI
@@ -82,11 +82,11 @@ public class UIOption : UIBase
         (opt as OptionTitle).Initialize("UI 설정", _baseFontSize[0] * SaveData.FontSizeMultiplier);
 
         opt = AddOption(eOptionType.Slider, _contents);
-        (opt as OptionSlider).Initialize("UI 크기 설정", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.UISize,
+        (opt as OptionSlider).Initialize("UI 크기 설정", _baseFontSize[1] * SaveData.FontSizeMultiplier, 0.5f, 2f, SaveData.UISize,
             (value) => { if (SaveData.UISize != value) _isChanged = true; SaveData.UISize = value; });
 
         opt = AddOption(eOptionType.Slider, _contents);
-        (opt as OptionSlider).Initialize("Font 크기 설정", _baseFontSize[1] * SaveData.FontSizeMultiplier, SaveData.FontSizeMultiplier,
+        (opt as OptionSlider).Initialize("Font 크기 설정", _baseFontSize[1] * SaveData.FontSizeMultiplier, 0.5f, 2f, SaveData.FontSizeMultiplier,
             (value) => { if (SaveData.FontSizeMultiplier != value) _isChanged = true; SaveData.FontSizeMultiplier = value; });
 
     }
