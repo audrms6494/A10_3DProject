@@ -13,6 +13,7 @@ public class UIDead : UIBase
 
     public void Initalize(PlayerInput _playerInput)
     {
+        RefreshSize();
         playerInput = _playerInput;
     }
 
@@ -26,5 +27,10 @@ public class UIDead : UIBase
     {
         playerInput.actions.Enable();
         SceneManager.LoadScene("StartScene");
+    }
+
+    public override void RefreshSize()
+    {
+        base.RefreshSize();
     }
 }

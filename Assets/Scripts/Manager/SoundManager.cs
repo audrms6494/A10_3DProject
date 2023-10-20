@@ -44,8 +44,11 @@ public class SoundManager : MonoBehaviour
     {
         switch (type)
         {
+            case eSoundType.Master:
+                ChangeVol(eSoundType.BGM);
+                break;
             case eSoundType.BGM:
-                Instance._BGMAudioSource.volume = GameManager.Data.BGMVolume;
+                Instance._BGMAudioSource.volume = GameManager.Data.BGMVolume * GameManager.Data.MasterVolume;
                 break;
         }
     }
@@ -67,10 +70,10 @@ public class SoundManager : MonoBehaviour
         while (time <= _changeDuration / 2f)
         {
             time += Time.deltaTime;
-            _BGMAudioSource.volume = GameManager.Data.BGMVolume * Mathf.Min(time / _changeDuration, 1.0f);
+            _BGMAudioSource.volume = GameManager.Data.BGMVolume * GameManager.Data.MasterVolume * Mathf.Min(time / _changeDuration, 1.0f);
             yield return null;
         }
-        _BGMAudioSource.volume = GameManager.Data.BGMVolume;
+        _BGMAudioSource.volume = GameManager.Data.BGMVolume * GameManager.Data.MasterVolume;
         yield break;
     }
 
@@ -94,16 +97,16 @@ public class SoundManager : MonoBehaviour
                 volume = GameManager.Data.MasterVolume;
                 break;
             case eSoundType.BGM:
-                volume = GameManager.Data.BGMVolume;
+                volume = GameManager.Data.BGMVolume * GameManager.Data.MasterVolume;
                 break;
             case eSoundType.Effect:
-                volume = GameManager.Data.EffectVolume;
+                volume = GameManager.Data.EffectVolume * GameManager.Data.MasterVolume;
                 break;
             case eSoundType.UI:
-                volume = GameManager.Data.UIVolume;
+                volume = GameManager.Data.UIVolume * GameManager.Data.MasterVolume;
                 break;
             default:
-                volume = 0;
+                volume = GameManager.Data.MasterVolume;
                 break;
         }
         soundSource.Play(Instance._audioMixer[(int)type], clip, volume, minPitch, maxPitch);

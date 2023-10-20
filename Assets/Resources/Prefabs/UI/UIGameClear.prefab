@@ -669,7 +669,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _self: {fileID: 1408837787189548201}
-  _baseFontSize: []
+  _baseFontSize:
+  - 60
+  - 55
   playerInput: {fileID: 0}
   DragonName: {fileID: 1786196723359761913}
 --- !u!1 &7161900770010764243

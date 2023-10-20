@@ -13,18 +13,20 @@ public class OptionSlider : OptionUI
 
     private float preValue;
     private Action<float> _apply;
-    
-    public void Initialize(string title, float fontSize, float initValue, Action<float> apply)
+
+    public void Initialize(string title, float fontSize, float min, float max, float initValue, Action<float> apply)
     {
         Title.text = title;
         Title.fontSize = fontSize;
         preValue = initValue;
         _apply = apply;
-        InitValue(initValue);
+        InitValue(min, max, initValue);
     }
 
-    private void InitValue(float value)
+    private void InitValue(float min, float max, float value)
     {
+        SliderOption.minValue = min;
+        SliderOption.maxValue = max;
         SliderOption.value = value;
         Data.text = value.ToString("F2");
     }
