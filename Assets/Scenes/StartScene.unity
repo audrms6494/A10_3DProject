@@ -1693,6 +1693,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8086115670473038797, guid: f669c9b3493bfa645bbc587be96d603a, type: 3}
+      propertyPath: StageClearFlags.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086115670473038797, guid: f669c9b3493bfa645bbc587be96d603a, type: 3}
+      propertyPath: StageClearFlags.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086115670473038797, guid: f669c9b3493bfa645bbc587be96d603a, type: 3}
+      propertyPath: StageClearFlags.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2392,6 +2404,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1314041428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1314041429}
+  - component: {fileID: 1314041430}
+  m_Layer: 0
+  m_Name: DragonSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1314041429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314041428}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1314041430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314041428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f293db51d650ee34a924bb654234ce87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1323657044
 GameObject:
   m_ObjectHideFlags: 0
@@ -4298,6 +4354,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1586196863}
     m_Modifications:
+    - target: {fileID: 390803722185662176, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 649683076218409749, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 729629517291502824, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270848105541186807, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741182813734131506, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830491146555824522, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904284494434517237, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624139594746313813, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802776343599501069, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867758164241914879, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898446747027407898, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3116446352619703067, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3126315451819640839, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4342,9 +4446,101 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5051933300362389278, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379086372559465499, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386358877500928140, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5821694614453640907, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123758001928999107, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217393648626776166, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223849821061666953, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515434076363113646, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_VoxelSize
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515434076363113646, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_AgentTypeID
+      value: -1372625422
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515434076363113646, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 98a2ea80ae86fdc40ad196cdd7bc14ae, type: 2}
+    - target: {fileID: 7286811452736280069, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301848525787144565, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555238467781502242, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664892575830407831, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8178540482762033731, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358518465641639041, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8362971937008986650, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
       propertyPath: m_Name
       value: Fence
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606930697502142677, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638462445595672923, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756594980740176580, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809044339150804703, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8993624009504270666, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068906546729332595, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205807425136003748, guid: ff319aa2f81f7b245946c84d2c0126ec, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
