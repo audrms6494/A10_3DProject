@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public static DataManager Data { get => Instance._data; }
     public GameObject Player;
+    public bool[] StageClearFlags = new bool[3];
 
     [SerializeField] private DataManager _data;
     private void Awake()
